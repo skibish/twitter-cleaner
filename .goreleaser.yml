@@ -32,3 +32,19 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+      - Merge pull request
+      - Merge branch
+dockers:
+- image_templates:
+  - 'skibish/{{.ProjectName}}:{{ .Tag }}'
+  - 'skibish/{{.ProjectName}}:latest'
+  dockerfile: Dockerfile
+  use_buildx: true
+  build_flag_templates:
+  - "--pull"
+  - "--label=org.opencontainers.image.created={{.Date}}"
+  - "--label=org.opencontainers.image.name={{.ProjectName}}"
+  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+  - "--label=org.opencontainers.image.version={{.Version}}"
+  - "--label=org.opencontainers.image.source={{.GitURL}}"
+  - "--platform=linux/amd64"
