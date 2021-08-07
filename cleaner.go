@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"strings"
 	"sync"
 	"time"
 
@@ -141,7 +142,11 @@ func (c *Cleaner) remove(tweet anaconda.Tweet) error {
 
 		if !c.dryRun {
 			if err := c.twitter.UnFavorite(tweet.Id); err != nil {
-				return fmt.Errorf("failed to unfavorite the tweet %d: %w", tweet.Id, err)
+
+				// 144: No status found with that ID
+				if !strings.Contains(err.Error(), "144") {
+					return fmt.Errorf("failed to unfavorite the tweet %d: %w", tweet.Id, err)
+				}
 			}
 		}
 	}
@@ -154,9 +159,12 @@ func (c *Cleaner) remove(tweet anaconda.Tweet) error {
 				return fmt.Errorf("failed to unretweet the tweet %d: %w", tweet.Id, err)
 			}
 		}
+
+		// retweeted tweet can't be deleted
+		return nil
 	}
 
-	// if favorited/retweeted tweet is not a users tweet,
+	// if tweet is not a users tweet,
 	// return earlier
 	if tweet.User.Id != c.userID {
 		return nil
