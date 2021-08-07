@@ -125,6 +125,6 @@ func TestCleaner(t *testing.T) {
 
 	is.Equal(5, len(twitterAPIMock.UnfavoriteCalls()))
 	is.Equal(3, len(twitterAPIMock.UnRetweetCalls()))
-	is.Equal(3, len(twitterAPIMock.DeleteTweetCalls()))
+	is.Equal(2, len(twitterAPIMock.DeleteTweetCalls()))
 
 }
