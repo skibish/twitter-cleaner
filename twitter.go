@@ -51,7 +51,7 @@ func (t *Twitter) GetUserFavorites(limitTweetID int64) ([]anaconda.Tweet, error)
 	v.Set("include_entities", "false")
 
 	// if 0, will return latest 200 tweets.
-	// otherwise, reteurn 200 before specified tweetID.
+	// otherwise, return 200 before specified tweetID.
 	if limitTweetID != 0 {
 		v.Set("max_id", strconv.Itoa(int(limitTweetID)))
 	}
