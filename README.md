@@ -4,6 +4,15 @@
 ![Release](https://github.com/skibish/twitter-cleaner/workflows/release/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/skibish/twitter-cleaner)](https://goreportcard.com/report/github.com/skibish/twitter-cleaner)
 
+> Twitter [rolls out new API access tiers](https://twittercommunity.com/t/announcing-new-access-tiers-for-the-twitter-api/188728)
+> which means that migration to v2 is needed.
+> Free tier doesn't offer all the capabilities needed for `twitter-cleaner` to function properly.
+>
+> Basic tier has all the needed APIs but it starts at $100/month which is ridiculous and I'm not interested to pay so much to clean my feed.
+> This is the reason why this repo is archived.
+>
+> Thanks everyone who used this tool!
+
 Clean your Twitter.
 
 Once in 24 hours all tweets that are older than half a year (by default) will be deleted, un-retweeted and un-favorited from your feed.
